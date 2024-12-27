@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import sup.realtions.mapping.dto.Books;
 import sup.realtions.mapping.dto.Laptop;
 import sup.realtions.mapping.dto.Student;
 import sup.realtions.mapping.repository.LaptopRepository;
@@ -28,7 +29,7 @@ public class StudentService {
 	public ResponseEntity<Object> fetchAll() {
 		List<Student> student = repository.findAll();
 		Map<String, Object> map = new HashMap<>();
-		map.put("Message", student);
+		map.put("Data", student);
 		return new ResponseEntity<Object>(map, HttpStatus.FOUND);
 	}
 
@@ -60,10 +61,17 @@ public class StudentService {
 			return new ResponseEntity<Object>(map,HttpStatus.NOT_FOUND);
 		}else {
 			Laptop laptop = optional.get();
-			String student = laptop.getStudent().getName();
+			List<Books> student = laptop.getStudent().getBooks();
 			map.put("Owner",student);
 			return new ResponseEntity<Object>(map, HttpStatus.FOUND);
 		}
+	}
+
+	public ResponseEntity<Object> getStudentByName(String name) {
+		Student student = repository.findByName(name);
+		Map<String, Object> map = new HashMap<>();
+		map.put("Student", student);
+		return new ResponseEntity<Object>(map, HttpStatus.FOUND);
 	}	
 }
 

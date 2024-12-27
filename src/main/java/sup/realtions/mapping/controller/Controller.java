@@ -24,7 +24,7 @@ public class Controller {
 	public ResponseEntity<Object> fetchAll(){
 		return service.fetchAll();
 	}
-	
+
 	@PostMapping("/student")
 	public ResponseEntity<Object> send(@RequestBody Student student){
 		return service.send(student);
@@ -40,5 +40,9 @@ public class Controller {
 		return service.getByLaptopId(id);
 	}
 	
+	@GetMapping("/student/name/{name}")
+	public ResponseEntity<Object> getStudentByName(@PathVariable String name){
+		return service.getStudentByName(name);
+	}
 
 }

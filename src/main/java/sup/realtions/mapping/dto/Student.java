@@ -26,14 +26,17 @@ public class Student {
 	@Column(name = "student_id")
 	private Integer id;
 	private String name;
+	private String password;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="laptop_id")
 	@JsonManagedReference
 	private Laptop laptop;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id")
+	@JsonManagedReference
 	private List<Books> books;
 	
 	
@@ -62,5 +65,12 @@ public class Student {
 	}
 	public void setLaptop(Laptop laptop) {
 		this.laptop = laptop;
+	}
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

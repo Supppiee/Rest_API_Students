@@ -16,6 +16,7 @@ public class Laptop {
 	@JsonBackReference
 	private Student student;
 
+	
 	public Integer getLaptop_id() {
 		return laptop_id;
 	}

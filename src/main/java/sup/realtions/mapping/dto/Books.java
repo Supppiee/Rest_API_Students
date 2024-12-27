@@ -1,5 +1,7 @@
 package sup.realtions.mapping.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -17,6 +19,7 @@ public class Books {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	@JsonBackReference
 	private Student student;
 
 	public int getBook_id() {
@@ -42,4 +45,5 @@ public class Books {
 	public void setStudent(Student student) {
 		this.student = student;
 	}
+	
 }
